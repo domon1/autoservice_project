@@ -2,7 +2,34 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="record-service">
+    <div class="record-text">
+        <p>Quick recording at a convenient time at a service station</p>
+    </div>
+    <div>
+        <button type="button" class="record-button">
+            Record to...
+        </button>
+        <button type="button" class="record-button">
+            Remove...
+        </button>
+    </div>
+</div>
+<div class="autoservice-info">
+    <div class="service-info">
+        <div class="services-text">
+            <p>Service</p>
+        </div>
+        <div>
+            <input type="button" value="Show" onclick='window.location = "@Url.Action("Index", "Manager")";'/>
+        </div>
+    </div>
+    <div class="staff-info">
+        <div class="staff-text">
+            <p>Staff</p>
+        </div>
+        <div>
+            <input type="button" value="Show" onclick='window.location = "@Url.Action("Staffs", "Home")";' />
+        </div>
+    </div>
 </div>

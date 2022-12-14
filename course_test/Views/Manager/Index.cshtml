@@ -1,0 +1,14 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div>
+    <h1>Manager Profile</h1>
+</div>
+<div>
+    <input type="button" value="Services" onclick='window.location = "@Url.Action("Services", "Manager")";' />
+    <input type="button" value="Staff" onclick='window.location = "@Url.Action("Staff", "Manager")";' />
+    <input type="button" value="Profit" onclick='window.location = "@Url.Action("Profit", "Manager")";' />
+    <input type="button" value="Clients" onclick='window.location = "@Url.Action("Clients", "Manager")";' />
+</div>

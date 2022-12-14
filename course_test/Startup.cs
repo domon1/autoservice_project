@@ -31,12 +31,12 @@ namespace course_test
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<EFDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DataLayer")));
-            services.AddSingleton<ICarRepository, EFCarRepository>();
-            services.AddSingleton<ICarServiceRepository, EFCarServiceRepository>();
-            services.AddSingleton<ICustomerRepository, EFCustomerRepository>();
-            services.AddSingleton<IOrderRepository, EFOrderRepository>();
-            services.AddSingleton<ISparepartRepository, EFSparepartRepository>();
-            services.AddSingleton<IStaffRepository, EFStaffRepository>();
+            services.AddTransient<ICarRepository, EFCarRepository>();
+            services.AddTransient<ICarServiceRepository, EFCarServiceRepository>();
+            services.AddTransient<ICustomerRepository, EFCustomerRepository>();
+            services.AddTransient<IOrderRepository, EFOrderRepository>();
+            services.AddTransient<ISparepartRepository, EFSparepartRepository>();
+            services.AddTransient<IStaffRepository, EFStaffRepository>();
             services.AddScoped<DataManager>();
             services.AddControllersWithViews();
         }
