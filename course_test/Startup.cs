@@ -1,6 +1,11 @@
+using BusinessLayer.Interfaces;
+using BusinessLayer.Implementations;
+using DataLayer;
+using DataLayer.Entityes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer;
 
 namespace course_test
 {
@@ -23,6 +29,15 @@ namespace course_test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<EFDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DataLayer")));
+            services.AddSingleton<ICarRepository, EFCarRepository>();
+            services.AddSingleton<ICarServiceRepository, EFCarServiceRepository>();
+            services.AddSingleton<ICustomerRepository, EFCustomerRepository>();
+            services.AddSingleton<IOrderRepository, EFOrderRepository>();
+            services.AddSingleton<ISparepartRepository, EFSparepartRepository>();
+            services.AddSingleton<IStaffRepository, EFStaffRepository>();
+            services.AddScoped<DataManager>();
             services.AddControllersWithViews();
         }
 
