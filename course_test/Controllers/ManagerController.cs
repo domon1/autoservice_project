@@ -217,5 +217,70 @@ namespace course_test.Controllers
             _dataManager.Sparepart.Save();
             return RedirectToAction("Spareparts");
         }
+
+        [HttpGet]
+        public IActionResult Clients()
+        {
+            return View(_dataManager.Customer.GetAll());
+        }
+
+        [HttpGet]
+        public IActionResult AddClient()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddClient(Customer customer)
+        {
+            _dataManager.Customer.Create(customer);
+            _dataManager.Customer.Save();
+            return RedirectToAction("Clients");
+        }
+
+        [HttpGet]
+        public IActionResult EditClient(int id)
+        {
+            Customer customer = _dataManager.Customer.GetById(id);
+            if (customer != null)
+            {
+                return View(customer);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditClient(Customer customer)
+        {
+            _dataManager.Customer.Update(customer);
+            _dataManager.Customer.Save();
+            return RedirectToAction("Clients");
+        }
+
+        [HttpGet]
+        [ActionName("DeleteClient")]
+        public IActionResult ConfirmDeleteClient(int id)
+        {
+            Customer customer = _dataManager.Customer.GetById(id);
+            if (customer != null)
+            {
+                return View(customer);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult DeleteClient(int id)
+        {
+            _dataManager.Customer.Delete(id);
+            _dataManager.Customer.Save();
+            return RedirectToAction("Clients");
+        }
     }
 }
