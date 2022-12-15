@@ -10,6 +10,7 @@ namespace BusinessLayer.Interfaces
     public interface ICarRepository
     {
         IEnumerable<Car> GetAll(); // получение всех объектов
+        IEnumerable<Car> GetAllById(int id); // получение всех объектов по id
         Car GetById(int id); // получение одного объекта по id
         void Create(Car item); // создание объекта
         void Update(Car item); // обновление объекта

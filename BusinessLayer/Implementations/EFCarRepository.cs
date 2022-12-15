@@ -52,5 +52,10 @@ namespace BusinessLayer.Implementations
         {
             _context.SaveChanges();
         }
+
+        public IEnumerable<Car> GetAllById(int id)
+        {
+            return _context.Cars.ToList().Where(x => x.CustomerId == id);
+        }
     }
 }

@@ -4,7 +4,7 @@
 @model DataLayer.Entityes.Customer
 @{
 }
-<h1>Delete Client</h1>
+<h1>Personal Area</h1>
 <div>
     <dl class="dl-horizontal">
         <dt>Name</dt>
@@ -26,11 +26,10 @@
     </dl>
 
     <div>
-        <form asp-controller="Manager" asp-action="DeleteClient" method="post">
-            <div class="form-group">
-                <input type="submit" class="btn btn-default" value="Delete" />
-            </div>
-        </form>
+        <a asp-action="Garage" asp-controller="Client" asp-route-id="@Model.CustomerId">Garage</a>
+        <a asp-action="ServiceHistory" asp-controller="Client" asp-route-id="@Model.CustomerId">Service</a>
+        <a asp-action="Records" asp-controller="Client" asp-route-id="@Model.CustomerId">Records</a>
+        <a asp-action="RecordOnService" asp-controller="Client" asp-route-id="@Model.CustomerId">Record on service</a>
     </div>
 
 </div>

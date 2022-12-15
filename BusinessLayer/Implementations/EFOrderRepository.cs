@@ -14,6 +14,11 @@ namespace BusinessLayer.Implementations
     {
         private EFDbContext _context;
 
+        public EFOrderRepository(EFDbContext context)
+        {
+            _context = context;
+        }
+
         public void Create(Order item)
         {
             _context.Orders.Add(item);
@@ -46,6 +51,18 @@ namespace BusinessLayer.Implementations
         public void Update(Order item)
         {
             _context.Entry(item).State = EntityState.Modified;
+        }
+
+        public IEnumerable<Order> GetAllById(int id)
+        {
+            Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
+            return _context.Orders.ToList().Where(x => x.CarId == car.CarId);
+        }
+
+        public IEnumerable<Order> GetAllNotFinishedById(int id)
+        {
+            Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
+            return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "waiting");
         }
     }
 }

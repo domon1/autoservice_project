@@ -15,5 +15,7 @@ namespace BusinessLayer.Interfaces
         void Update(Order item); // обновление объекта
         void Delete(int id); // удаление объекта по id
         void Save();  // сохранение изменений
+        IEnumerable<Order> GetAllById(int id);
+        IEnumerable<Order> GetAllNotFinishedById(int id);
     }
 }
