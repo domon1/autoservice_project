@@ -15,7 +15,6 @@
             <td>Price</td>
             <td>Duration</td>
             <td></td>
-            <td></td>
         </tr>
         @foreach (var service in Model)
         {
@@ -25,9 +24,12 @@
                 <td>@service.Name</td>
                 <td>@service.Price</td>
                 <td>@service.Duration</td>
-                <td><a href="~/Manager/Update/@service.CarServiceId">Update</a></td>
-                <td><a href="~/Manager/Delete/@service">Delete</a></td>
+                <td>
+                    <a asp-action="EditService" asp-controller="Manager" asp-route-id="@service.CarServiceId">Изменить</a> |
+                    <a asp-action="DeleteService" asp-controller="Manager" asp-route-id="@service.CarServiceId">Удалить</a>
+                </td>
             </tr>
         }
-        </table>
+    </table>
+    <input type="button" value="Add Service" onclick='window.location = "@Url.Action("AddService", "Manager")";'/>
 </div>
