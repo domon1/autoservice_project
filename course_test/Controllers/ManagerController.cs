@@ -87,5 +87,70 @@ namespace course_test.Controllers
             _dataManager.CarService.Save();
             return RedirectToAction("Services");
         }
+
+        [HttpGet]
+        public IActionResult Staff()
+        {
+            return View(_dataManager.Staff.GetAll());
+        }
+
+        [HttpGet]
+        public IActionResult AddStaff()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddStaff(Staff staff)
+        {
+            _dataManager.Staff.Create(staff);
+            _dataManager.Staff.Save();
+            return RedirectToAction("Staff");
+        }
+
+        [HttpGet]
+        public IActionResult EditStaff(int id)
+        {
+            Staff staff = _dataManager.Staff.GetById(id);
+            if (staff != null)
+            {
+                return View(staff);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditStaff(Staff staff)
+        {
+            _dataManager.Staff.Update(staff);
+            _dataManager.Staff.Save();
+            return RedirectToAction("Staff");
+        }
+
+        [HttpGet]
+        [ActionName("DeleteStaff")]
+        public IActionResult ConfirmDeleteStaff(int id)
+        {
+            Staff staff = _dataManager.Staff.GetById(id);
+            if (staff != null)
+            {
+                return View(staff);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult DeleteStaff(int id)
+        {
+            _dataManager.Staff.Delete(id);
+            _dataManager.Staff.Save();
+            return RedirectToAction("Staff");
+        }
     }
 }

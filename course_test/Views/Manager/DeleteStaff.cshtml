@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DataLayer.Entityes.Staff
+@{
+}
+<h1>Delete Staff</h1>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Name</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>Surname</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt>Specialization</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Specialization)
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Manager" asp-action="DeleteStaff" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Delete" />
+            </div>
+        </form>
+    </div>
+
+</div>

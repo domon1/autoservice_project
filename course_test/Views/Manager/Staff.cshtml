@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<DataLayer.Entityes.Staff>
+@{
+}
+<h1>Staff</h1>
+<div>
+    <table class="table">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Specialization</td>
+            <td>Profit</td>
+            <td></td>
+        </tr>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.StaffId</td>
+                <td>@service.Name</td>
+                <td>@service.Surname</td>
+                <td>@service.Specialization</td>
+                <td>averange score</td>
+                <td>
+                    <a asp-action="EditStaff" asp-controller="Manager" asp-route-id="@service.StaffId">Edit</a> |
+                    <a asp-action="DeleteStaff" asp-controller="Manager" asp-route-id="@service.StaffId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <input type="button" value="Add Service" onclick='window.location = "@Url.Action("AddStaff", "Manager")";' />
+</div>

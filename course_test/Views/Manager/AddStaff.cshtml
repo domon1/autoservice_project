@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DataLayer.Entityes.Staff
+@{
+}
+<h1>Add Staff</h1>
+<form asp-action="AddStaff" asp-controller="Manager" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" name="name">
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname">Surname</label>
+        <input asp-for="Name" type="text" name="surname" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Specialization">Specialization</label>
+        <input asp-for="Specialization" type="text" name="specialization" />
+    </div>
+    <div class="form-group">
+        <input type="submit" name="submit" value="Send" class="btn btn-default" />
+    </div>
+</form>
