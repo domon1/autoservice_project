@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<DataLayer.Entityes.Sparepart>
+@{
+
+}
+<h1>Spareparts</h1>
+<div>
+    <table class="table">
+        <tr>
+            <td>Id</td>
+            <td>Category</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td></td>
+        </tr>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.SparepartId</td>
+                <td>@service.Category</td>
+                <td>@service.Name</td>
+                <td>@service.Price</td>
+                <td>
+                    <a asp-action="EditSparepart" asp-controller="Manager" asp-route-id="@service.SparepartId">Edit</a> |
+                    <a asp-action="DeleteSparepart" asp-controller="Manager" asp-route-id="@service.SparepartId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <input type="button" value="Add Sparepart" onclick='window.location = "@Url.Action("AddSparepart", "Manager")";' />
+</div>

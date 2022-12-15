@@ -152,5 +152,70 @@ namespace course_test.Controllers
             _dataManager.Staff.Save();
             return RedirectToAction("Staff");
         }
+
+        [HttpGet]
+        public IActionResult Spareparts()
+        {
+            return View(_dataManager.Sparepart.GetAll());
+        }
+
+        [HttpGet]
+        public IActionResult AddSparepart()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddSparepart(Sparepart sparepart)
+        {
+            _dataManager.Sparepart.Create(sparepart);
+            _dataManager.Sparepart.Save();
+            return RedirectToAction("Spareparts");
+        }
+
+        [HttpGet]
+        public IActionResult EditSparepart(int id)
+        {
+            Sparepart sparepart = _dataManager.Sparepart.GetById(id);
+            if (sparepart != null)
+            {
+                return View(sparepart);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditSparepart(Sparepart sparepart)
+        {
+            _dataManager.Sparepart.Update(sparepart);
+            _dataManager.Sparepart.Save();
+            return RedirectToAction("Spareparts");
+        }
+
+        [HttpGet]
+        [ActionName("DeleteSparepart")]
+        public IActionResult ConfirmDeleteSparepart(int id)
+        {
+            Sparepart sparepart = _dataManager.Sparepart.GetById(id);
+            if (sparepart != null)
+            {
+                return View(sparepart);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSparepart(int id)
+        {
+            _dataManager.Sparepart.Delete(id);
+            _dataManager.Sparepart.Save();
+            return RedirectToAction("Spareparts");
+        }
     }
 }
