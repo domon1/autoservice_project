@@ -2,25 +2,60 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model CreateOrderModel
-@{
-}
+
 <h1>Record on service</h1>
 <form asp-action="RecordOnService" asp-controller="Client" method="post">
-    @*<div class="form-group">
+    <div class="form-group">
         <label asp-for="Order.Date">Date</label>
-        <input type="date" name="date" value="2022.12.16">
-        <input type="datetime" name="time" value="10:00:00">
-    </div>*@
-    @*<div class="form-group">
-        <label >Select service</label>
+        <input asp-for="Order.Date" type="date" name="date" id="calendar">
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.Time">Time</label>
+        <div id="genTime">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.Time">Time</label>
+
+    </div>
+    <div class="form-group">
+        <label>Select service</label>
         <select asp-for="Order.CarServiceId">
-            @foreach(var service in Model.CarServices)
+            @foreach (var service in Model.CarServices)
             {
                 <option value="@service.CarServiceId">@service.Name</option>
+
             }
         </select>
-    </div>*@
+    </div>
     <div class="form-group">
         <input type="submit" name="submit" value="Send" class="btn btn-default" />
     </div>
 </form>
+@section Scripts {
+    <script>
+        window.onload = function () {
+            let date = document.getElementById('calendar');
+            let time = document.getElementById('calendar_time');
+            var div = document.createElement('div');
+            var ran = getRandomInt();
+            date.addEventListener('input', function (event) {
+                deleteItems();
+                document.getElementById('genTime').appendChild(div);
+                for (i = 1; i < ran; i++) {
+                    div.append('generated block');
+                }
+            });
+        }
+        function getRandomInt() {
+            return Math.floor(Math.random() * 6);
+        }
+
+        function deleteItems() {
+            const deleteElement = document.querySelector('#genTime');
+            deleteElement.innerHTML = '';
+        }
+    </script>
+}
+

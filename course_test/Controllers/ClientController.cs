@@ -50,6 +50,7 @@ namespace course_test.Controllers
             var createOrder = new CreateOrderModel
             {
                 CarServices = _dataManager.CarService.GetAll()
+                
             };
             return View(createOrder);
         }
