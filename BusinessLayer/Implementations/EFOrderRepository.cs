@@ -64,5 +64,13 @@ namespace BusinessLayer.Implementations
             Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
             return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "waiting");
         }
+
+        public string getDate(int id)
+        {
+            //DateTime jointDate = _context.Orders.FirstOrDefault(x => x.OrderId == id).Date;
+            //string date = jointDate.ToString("dd.MM.yyyy");
+            //return date;
+            return null;
+        }
     }
 }

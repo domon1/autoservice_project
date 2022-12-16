@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using course_test.Models;
 using DataLayer.Entityes;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -46,7 +47,19 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult RecordOnService()
         {
-            return View();
+            var createOrder = new CreateOrderModel
+            {
+                CarServices = _dataManager.CarService.GetAll()
+            };
+            return View(createOrder);
+        }
+
+        [HttpPost]
+        public IActionResult RecordOnService(CreateOrderModel orderCreate)
+        {
+            _dataManager.Order.Create(orderCreate.Order);
+            _dataManager.Order.Save();
+            return RedirectToAction("Services");
         }
     }
 }

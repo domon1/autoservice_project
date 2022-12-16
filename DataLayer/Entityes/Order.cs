@@ -14,7 +14,8 @@ namespace DataLayer.Entityes
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
         public string State { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
         public int TotalPrice { get; set; }
 
         public int CarId { get; set; } // foreign key Car table
@@ -25,8 +26,5 @@ namespace DataLayer.Entityes
 
         public int StaffId { get; set; } // foreign key Staff table
         public Staff Staff { get; set; } // navigation property
-
-        public int SparepartId { get; set; } // foreign key Sparepart table
-        public Sparepart Sparepart { get; set; } // navigation property
     }
 }
