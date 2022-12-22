@@ -17,6 +17,7 @@ namespace DataLayer
         public DbSet<CarService> CarServices { get; set; }
         public DbSet<Sparepart> Spareparts { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<TimeOrder> TimeOrders { get; set; }
 
 
         public EFDbContext(DbContextOptions<EFDbContext> options): base(options) { }

@@ -10,6 +10,7 @@ namespace course_test.Models
     public class CreateOrderModel
     {
         public IEnumerable<CarService> CarServices { get; set; }
+        public IEnumerable<string> OrderTime { get; set; }
         public Order Order { get; set; }
     }
 }

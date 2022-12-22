@@ -64,14 +64,5 @@ namespace BusinessLayer.Implementations
             Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
             return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "waiting");
         }
-
-        public IEnumerable<string> showTimes(string date)
-        {
-            List<string> timeList = _context.Orders
-                .Where(x => x.Date == date)
-                .Select(x => x.Time)
-                .ToList();
-            return timeList;
-        }
     }
 }

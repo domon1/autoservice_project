@@ -3,14 +3,16 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDbContext))]
-    partial class EFDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221222175251_addTimeTable")]
+    partial class addTimeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,8 +119,8 @@ namespace DataLayer.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TimeOrderId")
-                        .HasColumnType("int");
+                    b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
@@ -130,8 +132,6 @@ namespace DataLayer.Migrations
                     b.HasIndex("CarServiceId");
 
                     b.HasIndex("StaffId");
-
-                    b.HasIndex("TimeOrderId");
 
                     b.ToTable("Orders");
                 });
@@ -178,21 +178,6 @@ namespace DataLayer.Migrations
                     b.ToTable("Staffs");
                 });
 
-            modelBuilder.Entity("DataLayer.Entityes.TimeOrder", b =>
-                {
-                    b.Property<int>("TimeOrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("TimeValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TimeOrderId");
-
-                    b.ToTable("TimeOrders");
-                });
-
             modelBuilder.Entity("DataLayer.Entityes.Car", b =>
                 {
                     b.HasOne("DataLayer.Entityes.Customer", "Customer")
@@ -224,19 +209,11 @@ namespace DataLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataLayer.Entityes.TimeOrder", "TimeOrder")
-                        .WithMany("Orders")
-                        .HasForeignKey("TimeOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Car");
 
                     b.Navigation("CarService");
 
                     b.Navigation("Staff");
-
-                    b.Navigation("TimeOrder");
                 });
 
             modelBuilder.Entity("DataLayer.Entityes.Car", b =>
@@ -255,11 +232,6 @@ namespace DataLayer.Migrations
                 });
 
             modelBuilder.Entity("DataLayer.Entityes.Staff", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("DataLayer.Entityes.TimeOrder", b =>
                 {
                     b.Navigation("Orders");
                 });

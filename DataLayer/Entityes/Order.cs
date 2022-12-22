@@ -15,8 +15,10 @@ namespace DataLayer.Entityes
         public int OrderId { get; set; }
         public string State { get; set; }
         public string Date { get; set; }
-        public string Time { get; set; }
         public int TotalPrice { get; set; }
+
+        public int TimeOrderId { get; set; } // foreign key Car table
+        public TimeOrder TimeOrder { get; set; } // navigation property
 
         public int CarId { get; set; } // foreign key Car table
         public Car Car { get; set; } // navigation property

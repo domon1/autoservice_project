@@ -2,6 +2,11 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model CreateOrderModel
+@using Newtonsoft.Json
+@{
+    string[] timeList = new string[]{ "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"};
+}
+
 
 <h1>Record on service</h1>
 <form asp-action="RecordOnService" asp-controller="Client" method="post">
@@ -10,14 +15,10 @@
         <input asp-for="Order.Date" type="date" name="date" id="calendar">
     </div>
     <div class="form-group">
-        <label asp-for="Order.Time">Time</label>
-        <div id="genTime">
-
+        <label>Time</label>
+        <div id="time_block">
+            
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Order.Time">Time</label>
-
     </div>
     <div class="form-group">
         <label>Select service</label>
@@ -25,7 +26,6 @@
             @foreach (var service in Model.CarServices)
             {
                 <option value="@service.CarServiceId">@service.Name</option>
-
             }
         </select>
     </div>
@@ -33,29 +33,3 @@
         <input type="submit" name="submit" value="Send" class="btn btn-default" />
     </div>
 </form>
-@section Scripts {
-    <script>
-        window.onload = function () {
-            let date = document.getElementById('calendar');
-            let time = document.getElementById('calendar_time');
-            var div = document.createElement('div');
-            var ran = getRandomInt();
-            date.addEventListener('input', function (event) {
-                deleteItems();
-                document.getElementById('genTime').appendChild(div);
-                for (i = 1; i < ran; i++) {
-                    div.append('generated block');
-                }
-            });
-        }
-        function getRandomInt() {
-            return Math.floor(Math.random() * 6);
-        }
-
-        function deleteItems() {
-            const deleteElement = document.querySelector('#genTime');
-            deleteElement.innerHTML = '';
-        }
-    </script>
-}
-

@@ -47,10 +47,13 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult RecordOnService()
         {
+            IEnumerable<string> testString = new string[] {"10:00", "11:00", "12:00"};
+            var date = DateTime.Now.ToString("dd.MM.yyyy");
             var createOrder = new CreateOrderModel
             {
-                CarServices = _dataManager.CarService.GetAll()
-                
+                CarServices = _dataManager.CarService.GetAll(),
+                //OrderTime = _dataManager.Order.showTimes(date)
+                OrderTime = testString
             };
             return View(createOrder);
         }
