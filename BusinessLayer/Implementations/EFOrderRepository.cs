@@ -64,5 +64,11 @@ namespace BusinessLayer.Implementations
             Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
             return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "waiting");
         }
+
+        public IEnumerable<Order> GetAllFinishedById(int id)
+        {
+            Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
+            return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "finish");
+        }
     }
 }

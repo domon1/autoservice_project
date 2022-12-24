@@ -35,7 +35,7 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult ServiceHistory(int id)
         {
-            return View(_dataManager.Order.GetAllById(id));
+            return View(_dataManager.Order.GetAllFinishedById(id));
         }
 
         [HttpGet]
@@ -43,19 +43,38 @@ namespace course_test.Controllers
         {
             return View(_dataManager.Order.GetAllNotFinishedById(id));
         }
+        
+        [HttpGet]
+        public IActionResult InputDate(int id){
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult InputDate(string date, int id)
+        {
+            return RedirectToAction("RecordOnService", new { someDate = date, clientId = id});
+        }
 
         [HttpGet]
-        public IActionResult RecordOnService()
+        public IActionResult RecordOnService(string someDate, int clientId)
         {
-            IEnumerable<string> testString = new string[] {"10:00", "11:00", "12:00"};
-            var date = DateTime.Now.ToString("dd.MM.yyyy");
-            var createOrder = new CreateOrderModel
+            ViewBag.Date = someDate;
+            var orderCreate = new CreateOrderModel
             {
                 CarServices = _dataManager.CarService.GetAll(),
-                //OrderTime = _dataManager.Order.showTimes(date)
-                OrderTime = testString
+                TimeOrders = _dataManager.TimeOrder.GetTimeByDate(someDate),
+                Cars = _dataManager.Cars.GetAllById(clientId)
             };
-            return View(createOrder);
+
+            if (orderCreate.TimeOrders == null)
+            {
+                return RedirectToAction("NullDateView");
+            }
+            else
+            {
+                return View(orderCreate);
+            }
         }
 
         [HttpPost]
