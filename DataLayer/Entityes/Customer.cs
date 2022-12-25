@@ -19,5 +19,7 @@ namespace DataLayer.Entityes
         public string PhoneNumber { get; set; }
 
         public List<Car> Cars { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

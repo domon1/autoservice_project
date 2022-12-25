@@ -38,6 +38,8 @@ namespace course_test
             services.AddTransient<ISparepartRepository, EFSparepartRepository>();
             services.AddTransient<IStaffRepository, EFStaffRepository>();
             services.AddTransient<ITimeOrderRepository, EFTimeOrderRepository>();
+            services.AddTransient<IUserRepository, EFUserRepository>();
+            services.AddTransient<IRoleRepository, EFRoleRepository>();
             services.AddScoped<DataManager>();
             services.AddControllersWithViews();
         }

@@ -17,6 +17,8 @@ namespace BusinessLayer
         private ISparepartRepository _sparepartRepository;
         private IStaffRepository _staffRepository;
         private ITimeOrderRepository _timeOrderRepository;
+        private IUserRepository _userRepository;
+        private IRoleRepository _roleRepository;
 
         public DataManager(
             ICarRepository carRepository,
@@ -25,7 +27,9 @@ namespace BusinessLayer
             IOrderRepository orderRepository,
             ISparepartRepository sparepartRepository,
             IStaffRepository staffRepository,
-            ITimeOrderRepository timeOrderRepository
+            ITimeOrderRepository timeOrderRepository,
+            IUserRepository userRepository,
+            IRoleRepository roleRepository
             )
         {
             _carRepository = carRepository;
@@ -35,6 +39,7 @@ namespace BusinessLayer
             _sparepartRepository = sparepartRepository;
             _staffRepository = staffRepository;
             _timeOrderRepository = timeOrderRepository;
+            _userRepository = userRepository;
     }
 
         public ICarRepository Cars { get { return _carRepository; } }
@@ -44,5 +49,7 @@ namespace BusinessLayer
         public ISparepartRepository Sparepart { get { return _sparepartRepository; } }
         public IStaffRepository Staff { get { return _staffRepository; } }
         public ITimeOrderRepository TimeOrder { get { return _timeOrderRepository; } }
+        public IUserRepository User { get { return _userRepository; } }
+        public IRoleRepository Role { get { return _roleRepository; } }
     }
 }

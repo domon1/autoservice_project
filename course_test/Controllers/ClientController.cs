@@ -21,7 +21,7 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult Index(int id)
         {
-            id = 1;
+            //id = 1;
             Customer customer = _dataManager.Customer.GetById(id);
             return View(customer);
         }

@@ -18,6 +18,8 @@ namespace DataLayer
         public DbSet<Sparepart> Spareparts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<TimeOrder> TimeOrders { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
 
         public EFDbContext(DbContextOptions<EFDbContext> options): base(options) { }

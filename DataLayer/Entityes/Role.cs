@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entityes
 {
-    public class Staff
+    public class Role
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int StaffId { get; set; }
+        public int RoleId { get; set; }
         public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Specialization { get; set; }
 
-        public List<Order> Orders { get; set; } // navigation property
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public List<User> Users { get; set; }
     }
 }

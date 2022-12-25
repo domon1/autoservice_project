@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model RegUserModel
+<h2>Регистрация</h2>
+
+<form asp-action="Register" asp-controller="Home" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label asp-for="Customer.Name">Input your name:</label><br />
+            <input type="text" asp-for="Customer.Name" />
+            <span asp-validation-for="Customer.Name" />
+        </div>
+        <div>
+            <label asp-for="Customer.Surname">Input your surname:</label><br />
+            <input type="text" asp-for="Customer.Surname" />
+            <span asp-validation-for="Customer.Surname" />
+        </div>
+        <div>
+            <label asp-for="Customer.Patrionomic">Input your patrionomic:</label><br />
+            <input type="text" asp-for="Customer.Patrionomic" />
+            <span asp-validation-for="Customer.Patrionomic" />
+        </div>
+        <div>
+            <label asp-for="Customer.PhoneNumber">Input your phone number:</label><br />
+            <input type="text" asp-for="Customer.PhoneNumber" />
+            <span asp-validation-for="Customer.PhoneNumber" />
+        </div>
+        <div>
+            <label asp-for="RegisterModel.Email">Input email:</label><br />
+            <input type="text" asp-for="RegisterModel.Email" />
+            <span asp-validation-for="RegisterModel.Email" />
+        </div>
+        <div>
+            <label asp-for="RegisterModel.Password">Input password:</label><br />
+            <input asp-for="RegisterModel.Password" />
+            <span asp-validation-for="RegisterModel.Password" />
+        </div>
+        <div>
+            <label asp-for="RegisterModel.ConfirmPassword">Repeat password:</label><br />
+            <input asp-for="RegisterModel.ConfirmPassword" />
+            <span asp-validation-for="RegisterModel.ConfirmPassword" />
+        </div>
+        <div>
+            <input type="submit" value="Регистрация" />
+        </div>
+    </div>
+</form>
