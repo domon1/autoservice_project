@@ -5,6 +5,7 @@
 <div class="record-service">
     <div class="record-text">
         <p>Quick recording at a convenient time at a service station</p>
+        <input type="button" value="LogIn" onclick='window.location = "@Url.Action("Login", "Home")";' />
     </div>
     <div>
         <button type="button" class="record-button">
@@ -22,7 +23,7 @@
         </div>
         <div>
             <input type="button" value="Show" onclick='window.location = "@Url.Action("Index", "Manager")";' />
-            <input type="button" value="Show" onclick='window.location = "@Url.Action("Login", "Home")";' />
+            <input type="button" value="Show" onclick='window.location = "@Url.Action("Index", "Home")";' />
         </div>
     </div>
     <div class="staff-info">

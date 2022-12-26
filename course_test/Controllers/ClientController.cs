@@ -21,7 +21,6 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult Index(int id)
         {
-            //id = 1;
             Customer customer = _dataManager.Customer.GetById(id);
             return View(customer);
         }
@@ -29,8 +28,11 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult Garage(int id)
         {
+            ViewBag.custId = id; 
             return View(_dataManager.Cars.GetAllById(id));
         }
+
+
 
         [HttpGet]
         public IActionResult ServiceHistory(int id)
@@ -41,6 +43,7 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult Records(int id)
         {
+            ViewBag.custId = id;
             return View(_dataManager.Order.GetAllNotFinishedById(id));
         }
         
@@ -80,9 +83,11 @@ namespace course_test.Controllers
         [HttpPost]
         public IActionResult RecordOnService(CreateOrderModel orderCreate)
         {
+            orderCreate.Order.StaffId = 1;
+            int custId = _dataManager.Order.GetClientId(orderCreate.Order);
             _dataManager.Order.Create(orderCreate.Order);
             _dataManager.Order.Save();
-            return RedirectToAction("Services");
+            return RedirectToAction("Index", "Client", new { id = custId});
         }
     }
 }

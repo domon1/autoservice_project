@@ -65,10 +65,21 @@ namespace BusinessLayer.Implementations
             return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "waiting");
         }
 
+        public Order GetAllNotFinishedByDate(string date)
+        {
+            //return _context.Orders.ToList().Where(x => x.Date == date && x.State == "waiting");
+            return null;
+        }
+
         public IEnumerable<Order> GetAllFinishedById(int id)
         {
             Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
             return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "finish");
+        }
+
+        public int GetClientId(Order order)
+        {
+            return _context.Cars.FirstOrDefault(x => x.CarId == order.CarId).CustomerId;
         }
     }
 }

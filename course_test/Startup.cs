@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace course_test
 {
@@ -41,6 +42,14 @@ namespace course_test
             services.AddTransient<IUserRepository, EFUserRepository>();
             services.AddTransient<IRoleRepository, EFRoleRepository>();
             services.AddScoped<DataManager>();
+
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(options =>
+            //    {
+            //        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("Home/Login");
+            //        options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("Home/Login");
+            //    });
+
             services.AddControllersWithViews();
         }
 

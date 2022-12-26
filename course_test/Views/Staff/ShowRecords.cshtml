@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<ShowOrderModel>
+
+<h1>Records</h1>
+<div>
+    <table class="table">
+        <tr>
+            <td>Id</td>
+            <td>Car</td>
+            <td>Service</td>
+            <td>Date</td>
+            <td>Time</td>
+            <td></td>
+        </tr>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.Order.OrderId</td>
+                <td>@service.Cars.LicencePlate</td>
+                <td>@service.CarServices.Name</td>
+                <td>@service.Order.Date</td>
+                <td>@service.TimeOrders.TimeValue</td>
+                <td>
+                    <a asp-action="AddStaff" asp-controller="Staff" asp-route-id="@service.OrderId">Add staff</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

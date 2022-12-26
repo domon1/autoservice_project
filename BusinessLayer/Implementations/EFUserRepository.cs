@@ -40,7 +40,19 @@ namespace BusinessLayer.Implementations
 
         public int GetCustomerId(User user)
         {
-            return _context.Customers.FirstOrDefault(x => x.UserId == user.UserId).CustomerId;
+            if (user != null)
+            {
+                if (user.RoleId == 1)
+                {
+                    return _context.Customers.FirstOrDefault(x => x.UserId == user.UserId).CustomerId;
+                }
+                else
+                {
+                    return _context.Staffs.FirstOrDefault(x => x.UserId == user.UserId).StaffId;
+                }
+            }
+
+            return 0;
         }
     }
 }

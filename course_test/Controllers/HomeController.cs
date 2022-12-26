@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Threading.Tasks;
 
 namespace course_test.Controllers
@@ -22,21 +25,25 @@ namespace course_test.Controllers
             _datamanager = datanamager;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Services()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Staffs()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
@@ -76,7 +83,9 @@ namespace course_test.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else
+                {
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
             }
             return View(model);
         }
@@ -94,26 +103,46 @@ namespace course_test.Controllers
             {
                 User user = _datamanager.User.Login(model.Email, model.Password);
                 int custID = _datamanager.User.GetCustomerId(user);
-                if (user != null && user.RoleId == 1)
+                if (user != null)
                 {
-                    //await Authenticate(user); // аутентификация
-                    return RedirectToAction("Index", "Client", new { id = custID });
-                } else if (user.RoleId == 2)
-                {
-                    return RedirectToAction("Index", "Manager", new { id = custID });
+                    if (user.RoleId == 1)
+                    {
+                        return RedirectToAction("Index", "Client", new { id = custID });
 
-                } else if (user.RoleId == 3)
-                {
-                    return RedirectToAction("Index", "Master", new { id = custID });
+                    }
+                    else if (user.RoleId == 2)
+                    {
+                        return RedirectToAction("Index", "Manager", new { id = custID });
 
-                } else if (user.RoleId == 2)
-                {
-                    return RedirectToAction("Index", "Stuff", new { id = custID });
+                    }
+                    else if (user.RoleId == 3 || user.RoleId == 4)
+                    {
+                        return RedirectToAction("Index", "Staff", new { id = custID });
 
+                    }
                 }
+
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
         }
+
+        //private async Task Authenticate(User user)
+        //{
+        //    var claims = new List<Claim>
+        //    {
+        //        new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
+        //        new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
+        //    };
+        //    ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+        //        ClaimsIdentity.DefaultRoleClaimType);
+        //    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        //}
+
+        //public async Task<IActionResult> Logout()
+        //{
+        //    await HttpContext.SignOutAsync("Cookies");
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

@@ -17,6 +17,8 @@ namespace BusinessLayer.Interfaces
         void Save();  // сохранение изменений
         IEnumerable<Order> GetAllById(int id);
         IEnumerable<Order> GetAllNotFinishedById(int id);
+        IEnumerable<Order> GetAllNotFinishedByDate(string date);
         IEnumerable<Order> GetAllFinishedById(int id);
+        int GetClientId(Order order);
     }
 }

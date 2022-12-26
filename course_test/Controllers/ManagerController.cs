@@ -18,9 +18,10 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
+            Staff staff = _dataManager.Staff.GetById(id);
+            return View(staff);
         }
 
         [HttpGet]

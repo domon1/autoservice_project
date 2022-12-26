@@ -4,7 +4,7 @@
 @model DataLayer.Entityes.Staff
 
 <div>
-    <h1>Manager Profile</h1>
+    <h1>Staff Profile</h1>
 </div>
 <div>
     <dl class="dl-horizontal">
@@ -23,7 +23,10 @@
     </dl>
 </div>
 <div>
-    <input type="button" value="Services" onclick='window.location = "@Url.Action("Services", "Manager")";' />
+    <div>
+        <a asp-action="InputDate" asp-controller="Staff">Records</a>
+    </div>
+    <input type="button" value="Services" onclick='window.location = "@Url.Action("Services", "Staff")";' />
     <input type="button" value="Staff" onclick='window.location = "@Url.Action("Staff", "Manager")";' />
     <input type="button" value="Sareparts" onclick='window.location = "@Url.Action("Spareparts", "Manager")";' />
     <input type="button" value="Clients" onclick='window.location = "@Url.Action("Clients", "Manager")";' />
