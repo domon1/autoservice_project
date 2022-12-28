@@ -65,10 +65,24 @@ namespace BusinessLayer.Implementations
             return _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "waiting");
         }
 
-        public Order GetAllNotFinishedByDate(string date)
+        public IEnumerable<Order> GetAllNotFinishedByDate(string date)
         {
-            //return _context.Orders.ToList().Where(x => x.Date == date && x.State == "waiting");
-            return null;
+            return _context.Orders.ToList().Where(x => x.Date == date && x.State == "waiting");
+        }
+
+        public IEnumerable<Order> GetAllWorkingByDate(string date)
+        {
+            return _context.Orders.ToList().Where(x => x.Date == date && x.State == "working");
+        }
+
+        public IEnumerable<Order> GetAllWorkingByDateAndStaff(string date, int staffId)
+        {
+            return _context.Orders.ToList().Where(x => x.Date == date && x.State == "working" && x.StaffId == staffId);
+        }
+
+        public IEnumerable<Order> GetAllCheck()
+        {
+            return _context.Orders.ToList().Where(x => x.State == "check");
         }
 
         public IEnumerable<Order> GetAllFinishedById(int id)

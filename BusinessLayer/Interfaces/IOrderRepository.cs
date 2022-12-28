@@ -20,5 +20,8 @@ namespace BusinessLayer.Interfaces
         IEnumerable<Order> GetAllNotFinishedByDate(string date);
         IEnumerable<Order> GetAllFinishedById(int id);
         int GetClientId(Order order);
+        IEnumerable<Order> GetAllCheck();
+        IEnumerable<Order> GetAllWorkingByDate(string date);
+        IEnumerable<Order> GetAllWorkingByDateAndStaff(string date, int staffId);
     }
 }

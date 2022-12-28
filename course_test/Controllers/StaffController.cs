@@ -37,7 +37,7 @@ namespace course_test.Controllers
         [HttpPost]
         public IActionResult InputDate(string date)
         {
-            return RedirectToAction("ShowRecords", new { someDate = date});
+            return RedirectToAction("ShowRecords", new { someDate = date });
         }
 
         [HttpGet]
@@ -52,6 +52,91 @@ namespace course_test.Controllers
             ModelState.AddModelError("", "Not records!");
 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddStaff(int id)
+        {
+            var someOrder = _datamanager.Order.GetById(id);
+            var addStaff = new AddStaffModel
+            {
+                Staffs = _datamanager.Staff.GetAllStaff(),
+                Cars = _datamanager.Cars.GetById(someOrder.CarId),
+                CarServices = _datamanager.CarService.GetById(someOrder.CarServiceId),
+                TimeOrders = _datamanager.TimeOrder.GetById(someOrder.TimeOrderId),
+                Order = someOrder
+            };
+
+            return View(addStaff);
+        }
+
+        [HttpPost]
+        public IActionResult AddStaff(AddStaffModel addStaff)
+        {
+            _datamanager.Order.Update(addStaff.Order);
+            _datamanager.Order.Save();
+            return RedirectToAction("Index", "Staff", new { id = 5});
+        }
+
+        [HttpGet]
+        public IActionResult ShowUncheckedRecords()
+        {
+            return View(_datamanager.Order.GetAllCheck());
+        }
+
+        [HttpGet]
+        public IActionResult UncheckedRecords(int id)
+        {
+            Order order = _datamanager.Order.GetById(id);
+            return View(order);
+        }
+
+        [HttpPost]
+        public IActionResult UncheckedRecords(Order order)
+        {
+            _datamanager.Order.Update(order);
+            _datamanager.Order.Save();
+            return RedirectToAction("Index", "Staff", new { id = 5 });
+        }
+
+
+
+        [HttpGet]
+        public IActionResult InputDateStaff(int id)
+        {
+            ViewBag.staffId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult InputDateStaff(string date, int id)
+        {
+            return RedirectToAction("ShowRecordsStaff", new { someDate = date, staffId = id });
+        }
+
+        [HttpGet]
+        public IActionResult ShowRecordsStaff(string someDate, int staffId)
+        {
+            ViewBag.id = staffId;
+            var showOrder = _datamanager.Order.GetAllWorkingByDateAndStaff(someDate, staffId);
+
+            if (showOrder != null)
+            {
+                return View(showOrder);
+            }
+            ModelState.AddModelError("", "Not records!");
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult SendOnCheck(int orderId, int staffId)
+        {
+            Order order = _datamanager.Order.GetById(orderId);
+            order.State = "check";
+            _datamanager.Order.Update(order);
+            _datamanager.Order.Save();
+            return RedirectToAction("Index", "Staff", new { id = staffId });
         }
     }
 }

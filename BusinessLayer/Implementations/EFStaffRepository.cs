@@ -52,5 +52,10 @@ namespace BusinessLayer.Implementations
         {
             _context.Entry(item).State = EntityState.Modified;
         }
+
+        public IEnumerable<Staff> GetAllStaff()
+        {
+            return _context.Staffs.Where(x => x.Specialization != "Мастер" && x.Specialization != "Менеджер").ToList();
+        }
     }
 }

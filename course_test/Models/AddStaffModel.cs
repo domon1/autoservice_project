@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace course_test.Models
 {
-    public class ShowOrderModel
+    public class AddStaffModel
     {
+        public IEnumerable<Staff> Staffs { get; set; }
         public CarService CarServices { get; set; }
         public TimeOrder TimeOrders { get; set; }
         public Car Cars { get; set; }

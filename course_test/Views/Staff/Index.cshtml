@@ -23,12 +23,17 @@
     </dl>
 </div>
 <div>
-    <div>
-        <a asp-action="InputDate" asp-controller="Staff">Records</a>
-    </div>
-    <input type="button" value="Services" onclick='window.location = "@Url.Action("Services", "Staff")";' />
-    <input type="button" value="Staff" onclick='window.location = "@Url.Action("Staff", "Manager")";' />
-    <input type="button" value="Sareparts" onclick='window.location = "@Url.Action("Spareparts", "Manager")";' />
-    <input type="button" value="Clients" onclick='window.location = "@Url.Action("Clients", "Manager")";' />
-    <input type="button" value="Profit" onclick='window.location = "@Url.Action("Profit", "Manager")";' />
+    @if (Model.Specialization == "Мастер")
+    {
+        <div>
+            <a asp-action="InputDate" asp-controller="Staff">Records</a>
+            <a asp-action="ShowUncheckedRecords" asp-controller="Staff">Check records</a>
+        </div>
+    }
+    else
+    {
+        <div>
+            <a asp-action="InputDateStaff" asp-controller="Staff" asp-route-id="@Model.StaffId">Records</a>
+        </div>
+    }
 </div>

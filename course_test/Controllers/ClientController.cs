@@ -32,7 +32,20 @@ namespace course_test.Controllers
             return View(_dataManager.Cars.GetAllById(id));
         }
 
+        [HttpGet]
+        public IActionResult AddCar(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult AddCar(Car car, int custId)
+        {
+            _dataManager.Cars.Create(car);
+            _dataManager.Cars.Save();
+            return RedirectToAction("Index", "Client", new { id = custId });
+        }
 
         [HttpGet]
         public IActionResult ServiceHistory(int id)

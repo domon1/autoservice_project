@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AddStaffModel
+<h1>Record on service</h1>
+<form asp-action="AddStaff" asp-controller="Staff" method="post">
+    <div class="form-group">
+        <label>Date: </label>
+        <input type="text" value="@Model.Order.Date" READONLY>
+        <input asp-for="Order.Date" type="hidden" value="@Model.Order.Date" />
+    </div>
+    <div class="form-group">
+        <label>Date: </label>
+        <input type="text" value="@Model.TimeOrders.TimeValue" READONLY>
+        <input asp-for="Order.TimeOrderId" type="hidden" value="@Model.TimeOrders.TimeOrderId" />
+    </div>
+    <div class="form-group">
+        <label>Car: </label>
+        <input type="text" value="@Model.Cars.LicencePlate" READONLY>
+        <input asp-for="Order.CarId" type="hidden" value="@Model.Cars.CarId" />
+    </div>
+    <div class="form-group">
+        <label>Service: </label>
+        <input type="text" value="@Model.CarServices.Name" READONLY>
+        <input asp-for="Order.CarServiceId" type="hidden" value="@Model.CarServices.CarServiceId" />
+    </div>
+    <div class="form-group">
+        <label>Select staff</label>
+        <select asp-for="Order.StaffId">
+            @foreach (var service in Model.Staffs)
+            {
+                <option value="@service.StaffId">@service.Surname @service.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.State">State: </label>
+        <input asp-for="Order.State" type="text" value="working" READONLY>
+        <input asp-for="Order.TotalPrice" type="hidden" value="@Model.CarServices.Price" />
+        <input asp-for="Order.OrderId" type="hidden" value="@Model.Order.OrderId" />
+    </div>
+    <div class="form-group">
+        <input type="submit" name="submit" value="Send" class="btn btn-default" />
+    </div>
+</form>

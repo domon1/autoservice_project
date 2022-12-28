@@ -15,5 +15,6 @@ namespace BusinessLayer.Interfaces
         void Update(Staff item); // обновление объекта
         void Delete(int id); // удаление объекта по id
         void Save();  // сохранение изменений
+        IEnumerable<Staff> GetAllStaff();
     }
 }

@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DataLayer.Entityes.Car
+
+<h1>Add Car</h1>
+<form asp-action="AddCar" asp-controller="Client" asp-route-custId="@ViewBag.id" method="post">
+    <div class="form-group">
+        <label asp-for="Mark">Mark</label>
+        <input asp-for="Mark" type="text" name="mark" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Model">Surname</label>
+        <input asp-for="Model" type="text" name="model" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LicencePlate">Licence Plate</label>
+        <input asp-for="LicencePlate" type="text" name="licenceplate" />
+    </div>
+    <div class="form-group">
+        <label asp-for="YearOfIssue">Year O fIssue</label>
+        <input asp-for="YearOfIssue" type="text" name="yearofissue" />
+    </div>
+    <div class="form-group">
+        <input asp-for="CustomerId" type="hidden" name="customerid" value="@ViewBag.id" />
+    </div>
+    <div class="form-group">
+        <input type="submit" name="submit" value="Send" class="btn btn-default" />
+    </div>
+</form>
