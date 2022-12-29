@@ -32,8 +32,9 @@
     }
     else
     {
-        <div>
-            <a asp-action="InputDateStaff" asp-controller="Staff" asp-route-id="@Model.StaffId">Records</a>
-        </div>
+<div>
+    <a asp-action="InputDateStaff" asp-controller="Staff" asp-route-id="@Model.StaffId">Records</a>
+    <a asp-action="ShowFinishedRecords" asp-controller="Staff" asp-route-id="@Model.StaffId">Finished</a>
+</div>
     }
 </div>

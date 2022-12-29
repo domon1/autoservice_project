@@ -10,7 +10,6 @@
             <td>Id</td>
             <td>Car</td>
             <td>Service</td>
-            <td>Date</td>
             <td>Time</td>
             <td></td>
         </tr>
@@ -18,10 +17,9 @@
         {
             <tr>
                 <td>@service.OrderId</td>
-                <td>@service.CarId</td>
-                <td>@service.CarId</td>
-                <td>@service.Date</td>
-                <td>@service.TimeOrderId</td>
+                <td>@service.Car.LicencePlate</td>
+                <td>@service.CarService.Name</td>
+                <td>@service.TimeOrder.TimeValue</td>
                 <td>
                     <a asp-action="AddStaff" asp-controller="Staff" asp-route-id="@service.OrderId">Add staff</a>
                 </td>

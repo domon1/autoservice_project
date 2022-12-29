@@ -45,12 +45,18 @@ namespace course_test.Controllers
         {
             var showOrder = _datamanager.Order.GetAllNotFinishedByDate(someDate);
 
+            //var showOrder = new ShowRecordsModel
+            //{
+            //    Orders = _datamanager.Order.GetAllNotFinishedByDate(someDate),
+            //    Cars = _datamanager.Cars.GetAll(),
+            //    CarServices = _datamanager.CarService.GetAll(),
+            //    TimeOrders = _datamanager.TimeOrder.GetAll()
+            //};
+
             if (showOrder != null)
             {
                 return View(showOrder);
             }
-            ModelState.AddModelError("", "Not records!");
-
             return View();
         }
 
@@ -87,8 +93,17 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult UncheckedRecords(int id)
         {
-            Order order = _datamanager.Order.GetById(id);
-            return View(order);
+            var someOrder = _datamanager.Order.GetById(id);
+            var addStaff = new UncheckedOrderModel
+            {
+                Staff = _datamanager.Staff.GetById(someOrder.StaffId),
+                Cars = _datamanager.Cars.GetById(someOrder.CarId),
+                CarServices = _datamanager.CarService.GetById(someOrder.CarServiceId),
+                TimeOrders = _datamanager.TimeOrder.GetById(someOrder.TimeOrderId),
+                Order = someOrder
+            };
+
+            return View(addStaff);
         }
 
         [HttpPost]

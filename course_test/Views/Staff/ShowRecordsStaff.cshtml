@@ -20,10 +20,10 @@
         {
             <tr>
                 <td>@service.OrderId</td>
-                <td>@service.CarId</td>
-                <td>@service.CarId</td>
+                <td>@service.Car.LicencePlate</td>
+                <td>@service.CarService.Name</td>
                 <td>@service.Date</td>
-                <td>@service.TimeOrderId</td>
+                <td>@service.TimeOrder.TimeValue</td>
                 <td>
                     <a asp-action="SendOnCheck" asp-controller="Staff" asp-route-orderId="@service.OrderId" asp-route-staffId="@ViewBag.id">Send on check</a>
                 </td>

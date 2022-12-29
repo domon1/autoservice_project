@@ -48,13 +48,19 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult ServiceHistory(int id)
+        public IActionResult ServiceHistory(int id) // maybe add filter for car
         {
-            return View(_dataManager.Order.GetAllFinishedById(id));
+            ViewBag.id = id;
+            var service = _dataManager.Order.GetAllFinishedById(id);
+            if (service != null)
+            {
+                return View(service);
+            }
+            return View(); // add NoFreeTimeView!
         }
 
         [HttpGet]
-        public IActionResult Records(int id)
+        public IActionResult Records(int id) // maybe add filter for car, service
         {
             ViewBag.custId = id;
             return View(_dataManager.Order.GetAllNotFinishedById(id));
@@ -63,6 +69,7 @@ namespace course_test.Controllers
         [HttpGet]
         public IActionResult InputDate(int id){
             ViewBag.Id = id;
+            ViewBag.minDate = DateTime.Now.ToString("yyyy-MM-dd");
             return View();
         }
 
@@ -85,7 +92,7 @@ namespace course_test.Controllers
 
             if (orderCreate.TimeOrders == null)
             {
-                return RedirectToAction("NullDateView");
+                return RedirectToAction("NullDateView"); // need add view!
             }
             else
             {
@@ -96,7 +103,6 @@ namespace course_test.Controllers
         [HttpPost]
         public IActionResult RecordOnService(CreateOrderModel orderCreate)
         {
-            orderCreate.Order.StaffId = 1;
             int custId = _dataManager.Order.GetClientId(orderCreate.Order);
             _dataManager.Order.Create(orderCreate.Order);
             _dataManager.Order.Save();

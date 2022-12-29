@@ -6,6 +6,6 @@
 <h1>Record on service</h1>
 <form method="post" asp-action="InputDate" asp-controller="Client" asp-route-id="@ViewBag.Id">
     <label>Input data:</label><br />
-    <input type="date" name="date"/><br />
+    <input type="date" name="date" min="@ViewBag.minDate" /><br />
     <input type="submit" value="Отправить" />
 </form>

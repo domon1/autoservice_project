@@ -37,10 +37,19 @@
         </select>
     </div>
     <div class="form-group">
-        <label asp-for="Order.State">State: </label>
-        <input asp-for="Order.State" type="text" value="waiting" READONLY>
+        <input asp-for="Order.StaffId" type="hidden" value="1" READONLY>
+        <input asp-for="Order.State" type="hidden" value="waiting" READONLY>
     </div>
-    <div class="form-group">
-        <input type="submit" name="submit" value="Send" class="btn btn-default" />
-    </div>
+    @if (!(Model.Cars.Count() == 0))
+    {
+        <div class="form-group">
+            <input type="submit" name="submit" value="Send" class="btn btn-default" />
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <p>You don't add car(s). Please add car on personal area!</p>
+        </div>
+    }
 </form>

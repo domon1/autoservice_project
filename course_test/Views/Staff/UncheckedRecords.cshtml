@@ -3,45 +3,48 @@
 *@
 @{
 }
-@model DataLayer.Entityes.Order
+@model UncheckedOrderModel
 <h1>Personal Area</h1>
 <form asp-action="UncheckedRecords" asp-controller="Staff" method="post">
     <div class="form-group">
         <label>OrderId: </label>
-        <input asp-for="@Model.OrderId" type="hidden" value="@Model.OrderId" READONLY />
+        <input asp-for="Order.OrderId" type="text" value="@Model.Order.OrderId" readonly />
     </div>
     <div class="form-group">
         <label>Date: </label>
-        <input asp-for="@Model.Date" type="text" value="@Model.Date" READONLY />
+        <input type="text" value="@Model.Order.Date" READONLY>
+        <input asp-for="Order.Date" type="hidden" value="@Model.Order.Date" />
     </div>
     <div class="form-group">
-        <label>Date: </label>
-        <input asp-for="@Model.TimeOrderId" type="text" value="@Model.TimeOrderId" READONLY />
-    </div>
-    <div class="form-group">
-        <label>Service: </label>
-        <input asp-for="@Model.CarServiceId" type="hidden" value="@Model.CarServiceId" READONLY />
-    </div>
-    <div class="form-group">
-        <label>Price: </label>
-        <input asp-for="@Model.TotalPrice" type="text" value="@Model.TotalPrice" READONLY />
+        <label>Time: </label>
+        <input type="text" value="@Model.TimeOrders.TimeValue" READONLY>
+        <input asp-for="Order.TimeOrderId" type="hidden" value="@Model.TimeOrders.TimeOrderId" />
     </div>
     <div class="form-group">
         <label>Car: </label>
-        <input asp-for="@Model.CarId" type="text" value="@Model.CarId" READONLY />
+        <input type="text" value="@Model.Cars.LicencePlate" READONLY>
+        <input asp-for="Order.CarId" type="hidden" value="@Model.Cars.CarId" />
     </div>
     <div class="form-group">
-        <label>Staff: </label>
-        <input asp-for="@Model.StaffId" type="text" value="@Model.StaffId"READONLY  />
+        <label>Service: </label>
+        <input type="text" value="@Model.CarServices.Name" READONLY>
+        <input asp-for="Order.CarServiceId" type="hidden" value="@Model.CarServices.CarServiceId" />
     </div>
     <div class="form-group">
-        <label>Select state: </label>
-        <select asp-for="@Model.State">
-            @foreach (var service in Model.State)
-            {
+        <label>Staff:</label>
+        <input type="text" value="@Model.Staff.Name @Model.Staff.Surname" READONLY>
+        <input asp-for="Order.StaffId" type="hidden" value="@Model.Staff.StaffId" />
+    </div>
+    <div class="form-group">
+        <label>Price:</label>
+        <input type="text" value="@Model.Order.TotalPrice" READONLY>
+        <input asp-for="Order.TotalPrice" type="hidden" value="@Model.Order.TotalPrice" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.State">State: </label>
+        <select asp-for="Order.State">
                 <option value="finish">Завершить</option>
                 <option value="working">Доработать</option>
-            }
         </select>
     </div>
     <div class="form-group">
