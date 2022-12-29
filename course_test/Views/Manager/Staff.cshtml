@@ -3,6 +3,7 @@
 *@
 @model IEnumerable<DataLayer.Entityes.Staff>
 @{
+    ViewData["Title"] = "Staff";
 }
 <h1>Staff</h1>
 <div>
@@ -12,26 +13,24 @@
             <td>Name</td>
             <td>Surname</td>
             <td>Specialization</td>
-            <td>Profit</td>
             <td></td>
         </tr>
         @foreach (var service in Model)
         {
-            @if(@service.Specialization != "Менеджер")
-                {
-                    <tr>
-                        <td>@service.StaffId</td>
-                        <td>@service.Name</td>
-                        <td>@service.Surname</td>
-                        <td>@service.Specialization</td>
-                        <td>averange score</td>
-                        <td>
-                            <a asp-action="EditStaff" asp-controller="Manager" asp-route-id="@service.StaffId">Edit</a> |
-                            <a asp-action="DeleteStaff" asp-controller="Manager" asp-route-id="@service.StaffId">Delete</a>
-                        </td>
-                    </tr>
-                }
+            @if (@service.Specialization != "Менеджер")
+            {
+                <tr>
+                    <td>@service.StaffId</td>
+                    <td>@service.Name</td>
+                    <td>@service.Surname</td>
+                    <td>@service.Specialization</td>
+                    <td>
+                        <a asp-action="EditStaff" asp-controller="Manager" asp-route-id="@service.StaffId">Edit</a> |
+                        <a asp-action="DeleteStaff" asp-controller="Manager" asp-route-id="@service.StaffId">Delete</a>
+                    </td>
+                </tr>
+            }
         }
     </table>
-    <input type="button" value="Add Service" onclick='window.location = "@Url.Action("AddStaff", "Manager")";' />
+    <input type="button" value="Add Staff" onclick='window.location = "@Url.Action("AddStaff", "Manager")";' />
 </div>

@@ -3,6 +3,7 @@
 *@
 @model DataLayer.Entityes.Customer
 @{
+    ViewData["Title"] = "Edit client";
 }
 <h1>Edit Client</h1>
 <form asp-action="EditClient" asp-controller="Manager" asp-route-CustomerId="@Model.CustomerId" method="post">

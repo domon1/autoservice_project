@@ -2,15 +2,16 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Profit";
 }
 @model PartialModel
-<h1>Profit</h1>
+<h1>Profit</h1><br />
 <div style="display: flex; justify-content:space-between">
     <div>
         <h2>Date profit</h2>
         <form>
             <label>Date</label>
-            <input type="date" name="date" id="d1" value="2022-12-29"/> <br />
+            <input type="date" name="date" id="d1" value="2022-12-29" /> <br />
             <input type="submit" value="Send" id="day" />
         </form>
         @*<form asp-action="GetMonthProfit" method="get">  //on future
@@ -22,7 +23,7 @@
         <h2>Staff profit</h2>
         <form>
             <label>Date</label>
-            <input type="date" name="date" id="d2"/> <br />
+            <input type="date" name="date" id="d2" /> <br />
             <label>Staff</label>
             <select name="staffId" id="s2">
                 @foreach (var service in Model.Staff)
@@ -41,7 +42,7 @@
         <h2>Service profit</h2>
         <form>
             <label>Date</label>
-            <input type="date" name="date" id="d3"/> <br />
+            <input type="date" name="date" id="d3" /> <br />
             <label>Service</label>
             <select name="serviceId" id="s3">
                 @foreach (var service in Model.CarServices)

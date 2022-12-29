@@ -3,6 +3,7 @@
 *@
 @model DataLayer.Entityes.CarService
 @{
+    ViewData["Title"] = "Edit service";
 }
 <h1>Edit Service</h1>
 <form asp-action="EditService" asp-controller="Manager" asp-route-CarServiceId="@Model.CarServiceId" method="post">
@@ -12,15 +13,15 @@
     </div>
     <div class="form-group">
         <label asp-for="Name">Name</label>
-        <input asp-for="Name" type="text" name="name" value="@Model.Name"/>
+        <input asp-for="Name" type="text" name="name" value="@Model.Name" />
     </div>
     <div class="form-group">
         <label asp-for="Price">Price</label>
-        <input asp-for="Price" type="number" name="price" value="@Model.Price"/>
+        <input asp-for="Price" type="number" name="price" value="@Model.Price" />
     </div>
     <div class="form-group">
         <label asp-for="Duration">Duration</label>
-        <input asp-for="Duration" type="number" name="duration" value="@Model.Duration"/>
+        <input asp-for="Duration" type="number" name="duration" value="@Model.Duration" />
     </div>
     <div class="form-group">
         <input type="submit" name="submit" value="Save" class="btn btn-default" />

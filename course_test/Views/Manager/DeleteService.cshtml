@@ -3,6 +3,7 @@
 *@
 @model DataLayer.Entityes.CarService
 @{
+    ViewData["Title"] = "Delete service";
 }
 <h1>Delete Service</h1>
 <div>
@@ -28,7 +29,7 @@
     <div>
         <form asp-controller="Manager" asp-action="DeleteService" method="post">
             <div class="form-group">
-                <input type="submit" class="btn btn-default" value="Delete"/>
+                <input type="submit" class="btn btn-default" value="Delete" />
             </div>
         </form>
     </div>

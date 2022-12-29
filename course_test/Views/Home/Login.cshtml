@@ -2,8 +2,10 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
 <h2>Вход на сайт</h2>
-
 <a asp-action="Register" asp-controller="Home">Регистрация</a>
 
 <form asp-action="Login" asp-controller="Home" asp-anti-forgery="true">

@@ -26,28 +26,16 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         [HttpGet]
-        public IActionResult Services()
-        {
-            return View();
-        }
+        public IActionResult Services() => View(_datamanager.CarService.GetAll());
 
         [HttpGet]
-        public IActionResult Staffs()
-        {
-            return View();
-        }
+        public IActionResult Staff() => View(_datamanager.Staff.GetAll());
 
         [HttpGet]
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        public IActionResult Privacy() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -56,10 +44,7 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
+        public IActionResult Register() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]

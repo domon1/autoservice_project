@@ -13,9 +13,15 @@ namespace DataLayer.Entityes
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CarId { get; set; }
+        [Required]
         public string Mark { get; set; }
+        [Required]
         public string Model { get; set; }
+        [Required]
+        [StringLength(9, MinimumLength = 8, ErrorMessage = "Licence plate X000XXYY(Y)")]
         public string LicencePlate { get; set; }
+        [Required]
+        [Range(1940, 2030, ErrorMessage = "Invalid year!")]
         public int YearOfIssue { get; set; }
 
         public int CustomerId { get; set; }  // foreign key Customer table

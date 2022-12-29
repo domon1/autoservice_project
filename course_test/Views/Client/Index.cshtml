@@ -3,6 +3,7 @@
 *@
 @model DataLayer.Entityes.Customer
 @{
+    ViewData["Title"] = "Personal area";
 }
 <h1>Personal Area</h1>
 <div>
@@ -26,9 +27,9 @@
     </dl>
 
     <div>
-        <a asp-action="Garage" asp-controller="Client" asp-route-id="@Model.CustomerId">Garage</a> | 
-        <a asp-action="ServiceHistory" asp-controller="Client" asp-route-id="@Model.CustomerId">Service</a> | 
-        <a asp-action="Records" asp-controller="Client" asp-route-id="@Model.CustomerId">Records</a> | 
+        <a asp-action="Garage" asp-controller="Client" asp-route-id="@Model.CustomerId">Garage</a> |
+        <a asp-action="ServiceHistory" asp-controller="Client" asp-route-id="@Model.CustomerId">Service</a> |
+        <a asp-action="Records" asp-controller="Client" asp-route-id="@Model.CustomerId">Records</a> |
         <a asp-action="InputDate" asp-controller="Client" asp-route-id="@Model.CustomerId">Record on service</a>
     </div>
     <input type="button" value="Exit" onclick='window.location = "@Url.Action("Index", "Home")";' />

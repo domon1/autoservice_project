@@ -2,6 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model DataLayer.Entityes.Car
+@{
+    ViewData["Title"] = "Add car";
+}
 
 <h1>Add Car</h1>
 <form asp-action="AddCar" asp-controller="Client" asp-route-custId="@ViewBag.id" method="post">

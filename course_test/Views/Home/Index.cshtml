@@ -2,36 +2,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="record-service">
-    <div class="record-text">
+<div>
+    <div>
         <p>Quick recording at a convenient time at a service station</p>
-        <input type="button" value="LogIn" onclick='window.location = "@Url.Action("Login", "Home")";' />
     </div>
     <div>
-        <button type="button" class="record-button">
-            Record to...
-        </button>
-        <button type="button" class="record-button">
-            Remove...
-        </button>
+        <input type="button" value="Record to..." onclick='window.location = "@Url.Action("Login", "Home")";' />
     </div>
 </div>
-<div class="autoservice-info">
-    <div class="service-info">
-        <div class="services-text">
+<div style="display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;">
+    <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+        <div>
             <p>Service</p>
         </div>
         <div>
-            <input type="button" value="Show" onclick='window.location = "@Url.Action("Index", "Manager")";' />
-            <input type="button" value="Show" onclick='window.location = "@Url.Action("Index", "Home")";' />
+            <input type="button" value="Show" onclick='window.location = "@Url.Action("Services", "Home")";' />
         </div>
     </div>
-    <div class="staff-info">
-        <div class="staff-text">
+    <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+        <div>
             <p>Staff</p>
         </div>
         <div>
-            <input type="button" value="Show" onclick='window.location = "@Url.Action("Index", "Client")";' />
+            <input type="button" value="Show" onclick='window.location = "@Url.Action("Staff", "Home")";' />
         </div>
     </div>
 </div>

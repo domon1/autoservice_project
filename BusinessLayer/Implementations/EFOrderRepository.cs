@@ -62,19 +62,10 @@ namespace BusinessLayer.Implementations
         public IEnumerable<Order> GetAllNotFinishedById(int id)
         {
             Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
-            if (car != null)
-            {
-                var order = GetAll().Where(x => x.CarId == car.CarId && x.State == "waiting");
-                return order;
-            }
-            else
-            {
-                var order = GetAll().Where(x => x.CarId == 0 && x.State == "waiting");
-                return order;
-            }
+            var order = (car != null) ? _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "waiting") :
+                _context.Orders.ToList().Where(x => x.CarId == 0 && x.State == "waiting");
 
-
-            //(x => x.CarId == car.CarId && x.State == "waiting")
+            return order;
         }
 
         public IEnumerable<Order> GetAllNotFinishedByDate(string date)
@@ -103,27 +94,11 @@ namespace BusinessLayer.Implementations
         public IEnumerable<Order> GetAllFinishedById(int id)
         {
             Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
-            if (car != null)
-            {
-                var order = _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "finish");
-                return order;
-            }
-            else
-            {
-                var order = _context.Orders.ToList().Where(x => x.CarId == 0 && x.State == "finish");
-                return order;
-            }
-            //try
-            //{
-            //    Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
-            //    var order = _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "finish");
-            //    return order;
-            //}
-            //catch (NullReferenceException)
-            //{
-            //    throw new NullReferenceException();
-            //    //return null;
-            //}
+
+            var order = (car != null) ? _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "finish") :
+                _context.Orders.ToList().Where(x => x.CarId == 0 && x.State == "finish");
+
+            return order;
         }
 
         public int GetClientId(Order order)

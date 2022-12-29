@@ -2,9 +2,10 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Unchecked record";
 }
 @model UncheckedOrderModel
-<h1>Personal Area</h1>
+<h1>Record</h1>
 <form asp-action="UncheckedRecords" asp-controller="Staff" method="post">
     <div class="form-group">
         <label>OrderId: </label>
@@ -43,8 +44,8 @@
     <div class="form-group">
         <label asp-for="Order.State">State: </label>
         <select asp-for="Order.State">
-                <option value="finish">Завершить</option>
-                <option value="working">Доработать</option>
+            <option value="finish">Завершить</option>
+            <option value="working">Доработать</option>
         </select>
     </div>
     <div class="form-group">
