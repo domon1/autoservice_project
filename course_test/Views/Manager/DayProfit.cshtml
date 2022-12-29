@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<DataLayer.Entityes.Order>
+
+<div>
+    <div>Autoservice day profit</div>
+    <table class="table">
+        <tr>
+            <td>Id</td>
+            <td>Time</td>
+            <td>Service</td>
+            <td>Price</td>
+        </tr>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.OrderId</td>
+                <td>@service.TimeOrder.TimeValue</td>
+                <td>@service.CarService.Name</td>
+                <td>@service.TotalPrice</td>
+            </tr>
+        }
+    </table>
+    <div>
+        <p>Total: @Model.Sum(x => x.TotalPrice)</p>
+    </div>
+</div>

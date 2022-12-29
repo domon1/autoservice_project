@@ -23,5 +23,8 @@ namespace BusinessLayer.Interfaces
         IEnumerable<Order> GetAllCheck();
         IEnumerable<Order> GetAllWorkingByDate(string date);
         IEnumerable<Order> GetAllWorkingByDateAndStaff(string date, int staffId);
+        IEnumerable<Order> GetDayProfit(string date);
+        IEnumerable<Order> GetStaffDayProfit(string date, int staffId);
+        IEnumerable<Order> GetServiceDayProfit(string date, int serviceId);
     }
 }

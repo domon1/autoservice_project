@@ -130,5 +130,23 @@ namespace BusinessLayer.Implementations
         {
             return _context.Cars.FirstOrDefault(x => x.CarId == order.CarId).CustomerId;
         }
+
+        public IEnumerable<Order> GetDayProfit(string date)
+        {
+            return _context.Orders.Where(x => x.Date == date && x.State == "finish")
+                .Include(x => x.CarService).Include(x => x.TimeOrder).ToList();
+        }
+
+        public IEnumerable<Order> GetStaffDayProfit(string date, int staffId)
+        {
+            return _context.Orders.Where(x => x.Date == date && x.State == "finish" && x.StaffId == staffId)
+                .Include(x => x.Staff).Include(x => x.CarService).Include(x => x.TimeOrder).ToList();
+        }
+
+        public IEnumerable<Order> GetServiceDayProfit(string date, int serviceId)
+        {
+            return _context.Orders.Where(x => x.Date == date && x.State == "finish" && x.CarServiceId == serviceId)
+                .Include(x => x.Staff).Include(x => x.Car).Include(x => x.TimeOrder).ToList();
+        }
     }
 }

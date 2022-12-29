@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model PartialModel
+<h1>Profit</h1>
+<div style="display: flex; justify-content:space-between">
+    <div>
+        <h2>Date profit</h2>
+        <form>
+            <label>Date</label>
+            <input type="date" name="date" id="d1" value="2022-12-29"/> <br />
+            <input type="submit" value="Send" id="day" />
+        </form>
+        @*<form asp-action="GetMonthProfit" method="get">  //on future
+                <input type="number" name="monthNumb" min="1" max="12"/>
+                <input type="submit" value="Send" />
+            </form>*@
+    </div>
+    <div>
+        <h2>Staff profit</h2>
+        <form>
+            <label>Date</label>
+            <input type="date" name="date" id="d2"/> <br />
+            <label>Staff</label>
+            <select name="staffId" id="s2">
+                @foreach (var service in Model.Staff)
+                {
+                    <option value="@service.StaffId">@service.Name @service.Surname</option>
+                }
+            </select> <br />
+            <input type="submit" value="Send" id="staffDay" />
+        </form>
+        @*<form asp-action="GetStaffMonthProfit" method="get">  //on future
+                <input type="number" name="monthNumb" min="1" max="12" />
+                <input type="submit" value="Send" />
+            </form>*@
+    </div>
+    <div>
+        <h2>Service profit</h2>
+        <form>
+            <label>Date</label>
+            <input type="date" name="date" id="d3"/> <br />
+            <label>Service</label>
+            <select name="serviceId" id="s3">
+                @foreach (var service in Model.CarServices)
+                {
+                    <option value="@service.CarServiceId">@service.Name</option>
+                }
+            </select> <br />
+            <input type="submit" value="Send" id="serviceDay" />
+        </form>
+        @*<form asp-action="GetServiceMonthProfit" method="get">  //on future
+                <input type="number" name="monthNumb" min="1" max="12" />
+                <input type="submit" value="Send" />
+            </form>*@
+    </div>
+</div>
+<div id="partial"></div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#day').click(function (e) {
+            e.preventDefault();
+            var date = $('#d1').val();
+            $('#partial').load('@Url.Action("DayProfit", "Manager")?date='+ date)
+        });
+            $('#staffDay').click(function (e) {
+            e.preventDefault();
+                var date = $('#d2').val();
+                var staffId = $('#s2').val();
+                $('#partial').load('@Url.Action("StaffDayProfit", "Manager")?date=' + date + '&staffId=' + staffId)
+        });
+            $('#serviceDay').click(function (e) {
+            e.preventDefault();
+            var date = $('#d3').val();
+            var serviceId = $('#s3').val();
+            $('#partial').load('@Url.Action("ServiceDayProfit", "Manager")?date=' + date + '&serviceId=' + serviceId)
+        });
+    });
+    </script>
+}

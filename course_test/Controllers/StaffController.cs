@@ -44,15 +44,6 @@ namespace course_test.Controllers
         public IActionResult ShowRecords(string someDate)
         {
             var showOrder = _datamanager.Order.GetAllNotFinishedByDate(someDate);
-
-            //var showOrder = new ShowRecordsModel
-            //{
-            //    Orders = _datamanager.Order.GetAllNotFinishedByDate(someDate),
-            //    Cars = _datamanager.Cars.GetAll(),
-            //    CarServices = _datamanager.CarService.GetAll(),
-            //    TimeOrders = _datamanager.TimeOrder.GetAll()
-            //};
-
             if (showOrder != null)
             {
                 return View(showOrder);
@@ -64,15 +55,7 @@ namespace course_test.Controllers
         public IActionResult AddStaff(int id)
         {
             var someOrder = _datamanager.Order.GetById(id);
-            var addStaff = new AddStaffModel
-            {
-                Staffs = _datamanager.Staff.GetAllStaff(),
-                Cars = _datamanager.Cars.GetById(someOrder.CarId),
-                CarServices = _datamanager.CarService.GetById(someOrder.CarServiceId),
-                TimeOrders = _datamanager.TimeOrder.GetById(someOrder.TimeOrderId),
-                Order = someOrder
-            };
-
+            var addStaff = new AddStaffModel(_datamanager, someOrder);
             return View(addStaff);
         }
 
@@ -94,15 +77,7 @@ namespace course_test.Controllers
         public IActionResult UncheckedRecords(int id)
         {
             var someOrder = _datamanager.Order.GetById(id);
-            var addStaff = new UncheckedOrderModel
-            {
-                Staff = _datamanager.Staff.GetById(someOrder.StaffId),
-                Cars = _datamanager.Cars.GetById(someOrder.CarId),
-                CarServices = _datamanager.CarService.GetById(someOrder.CarServiceId),
-                TimeOrders = _datamanager.TimeOrder.GetById(someOrder.TimeOrderId),
-                Order = someOrder
-            };
-
+            var addStaff = new UncheckedOrderModel(_datamanager, someOrder);
             return View(addStaff);
         }
 
@@ -134,13 +109,10 @@ namespace course_test.Controllers
         {
             ViewBag.id = staffId;
             var showOrder = _datamanager.Order.GetAllWorkingByDateAndStaff(someDate, staffId);
-
             if (showOrder != null)
             {
                 return View(showOrder);
             }
-            ModelState.AddModelError("", "Not records!");
-
             return View();
         }
 

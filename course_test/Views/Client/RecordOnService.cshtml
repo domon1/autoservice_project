@@ -43,7 +43,7 @@
     @if (!(Model.Cars.Count() == 0))
     {
         <div class="form-group">
-            <input type="submit" name="submit" value="Send" class="btn btn-default" />
+            <input type="hidden" name="submit" value="Send" class="btn btn-default" id="sendButton" />
         </div>
     }
     else
@@ -53,3 +53,50 @@
         </div>
     }
 </form>
+@if (!(Model.Cars.Count() == 0))
+{
+    <div class="form-group">
+        <p id="label">SMS: </p>
+        <input type="text" value="" id="inTag">
+        <input type="hidden" value="-974" id="checkTag">
+        <input type="submit" name="submit" value="Send message" id="sB" onclick="generateControlSum()" />
+        <input type="hidden" name="submit" value="Check" id="rB" onclick="checkSum()" />
+    </div>
+}
+
+@functions{
+    public int generateControlSum()
+    {
+        Random r = new Random();
+        int cSum = r.Next(1000, 9999);
+        return cSum;
+    }
+}
+<script>
+    function generateControlSum() {
+        var cSum = @generateControlSum();
+        var message = 'Введите контрольную сумму: ' + cSum;
+        document.getElementById("checkTag").value = cSum;
+        document.getElementById("sB").type = 'hidden';
+        document.getElementById("rB").type = 'submit';
+        alert(message);
+    }
+
+    function checkSum() {
+        var a = document.getElementById("checkTag").value;
+        var b = document.getElementById("inTag").value;
+        if (a == b) {
+            document.getElementById("sendButton").type = 'submit';
+            document.getElementById("checkTag").type = 'hidden';
+            document.getElementById("sB").type = 'hidden';
+            document.getElementById("rB").type = 'hidden';
+            document.getElementById("inTag").type = 'hidden';
+            document.getElementById("label").style.display = 'none';
+            alert('Проверка пройдена!');
+        } else {
+            alert('Неверное значение!');
+            document.getElementById("sB").type = 'submit';
+            document.getElementById("rB").type = 'hidden';
+        }
+    }
+</script>

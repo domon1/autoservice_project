@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer;
 using DataLayer.Entityes;
+using course_test.Models;
 
 namespace course_test.Controllers
 {
@@ -25,16 +26,10 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Services()
-        {
-            return View(_dataManager.CarService.GetAll());
-        }
+        public IActionResult Services() => View(_dataManager.CarService.GetAll());
 
         [HttpGet]
-        public IActionResult AddService()
-        {
-            return View();
-        }
+        public IActionResult AddService() => View();
 
         [HttpPost]
         public IActionResult AddService(CarService carService)
@@ -90,16 +85,10 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Staff()
-        {
-            return View(_dataManager.Staff.GetAll());
-        }
+        public IActionResult Staff() => View(_dataManager.Staff.GetAll());
 
         [HttpGet]
-        public IActionResult AddStaff()
-        {
-            return View();
-        }
+        public IActionResult AddStaff() => View();
 
         [HttpPost]
         public IActionResult AddStaff(Staff staff)
@@ -155,16 +144,11 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Spareparts()
-        {
-            return View(_dataManager.Sparepart.GetAll());
-        }
+        public IActionResult Spareparts() => View(_dataManager.Sparepart.GetAll());
 
         [HttpGet]
-        public IActionResult AddSparepart()
-        {
-            return View();
-        }
+        public IActionResult AddSparepart() => View();
+
 
         [HttpPost]
         public IActionResult AddSparepart(Sparepart sparepart)
@@ -220,16 +204,10 @@ namespace course_test.Controllers
         }
 
         [HttpGet]
-        public IActionResult Clients()
-        {
-            return View(_dataManager.Customer.GetAll());
-        }
+        public IActionResult Clients() => View(_dataManager.Customer.GetAll());
 
         [HttpGet]
-        public IActionResult AddClient()
-        {
-            return View();
-        }
+        public IActionResult AddClient() => View();
 
         [HttpPost]
         public IActionResult AddClient(Customer customer)
@@ -283,5 +261,18 @@ namespace course_test.Controllers
             _dataManager.Customer.Save();
             return RedirectToAction("Clients");
         }
+
+        [HttpGet]
+        public IActionResult Profit() => View(new PartialModel(_dataManager));
+
+        [HttpGet]
+        public IActionResult DayProfit(string date) => PartialView(_dataManager.Order.GetDayProfit(date));
+
+        [HttpGet]
+        public IActionResult StaffDayProfit(string date, int staffId) => PartialView(_dataManager.Order.GetStaffDayProfit(date, staffId));
+
+        [HttpGet]
+        public IActionResult ServiceDayProfit(string date, int serviceId) => PartialView(_dataManager.Order.GetServiceDayProfit(date, serviceId));
+
     }
 }
