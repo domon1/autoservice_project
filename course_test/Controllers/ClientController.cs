@@ -108,5 +108,13 @@ namespace course_test.Controllers
             _dataManager.Order.Save();
             return RedirectToAction("Index", "Client", new { id = custId});
         }
+
+        [HttpGet]
+        public IActionResult MoreOrder(int id)
+        {
+            var someOrder = _dataManager.Order.GetById(id);
+            var addStaff = new UncheckedOrderModel(_dataManager, someOrder);
+            return View(addStaff);
+        }
     }
 }

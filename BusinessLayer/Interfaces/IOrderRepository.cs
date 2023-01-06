@@ -26,5 +26,6 @@ namespace BusinessLayer.Interfaces
         IEnumerable<Order> GetDayProfit(string date);
         IEnumerable<Order> GetStaffDayProfit(string date, int staffId);
         IEnumerable<Order> GetServiceDayProfit(string date, int serviceId);
+        IEnumerable<Order> GetAllFinishedByStaff(int id);
     }
 }

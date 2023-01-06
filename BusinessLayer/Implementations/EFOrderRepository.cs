@@ -95,7 +95,7 @@ namespace BusinessLayer.Implementations
         {
             Car car = _context.Cars.FirstOrDefault(x => x.CustomerId == id);
 
-            var order = (car != null) ? _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "finish") :
+            var order = (car != null) ? _context.Orders.ToList().Where(x => x.CarId == car.CarId && x.State == "finish"):
                 _context.Orders.ToList().Where(x => x.CarId == 0 && x.State == "finish");
 
             return order;
@@ -122,6 +122,12 @@ namespace BusinessLayer.Implementations
         {
             return _context.Orders.Where(x => x.Date == date && x.State == "finish" && x.CarServiceId == serviceId)
                 .Include(x => x.Staff).Include(x => x.Car).Include(x => x.TimeOrder).ToList();
+        }
+
+        public IEnumerable<Order> GetAllFinishedByStaff(int id)
+        {
+            return _context.Orders.Where(x => x.StaffId == id && x.State == "finish")
+                .Include(x => x.Car).Include(x => x.CarService).Include(x => x.TimeOrder).ToList();
         }
     }
 }

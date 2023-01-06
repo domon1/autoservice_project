@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model UncheckedOrderModel
+
+@{
+    ViewData["Title"] = "More order";
+}
+<h1>Personal Area</h1>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Date</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Date)
+        </dd>
+        <dt>Time</dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimeOrders.TimeValue)
+        </dd>
+        <dt>Service</dt>
+        <dd>
+            @Html.DisplayFor(model => model.CarServices.Name)
+        </dd>
+        <dt>Staff</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Staff.Name)
+            @Html.DisplayFor(model => model.Staff.Surname)
+            @Html.DisplayFor(model => model.Staff.Specialization)
+        </dd>
+        <dt>Total price</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.TotalPrice)
+        </dd>
+    </dl>
+</div>

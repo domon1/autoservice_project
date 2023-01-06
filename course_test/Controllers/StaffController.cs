@@ -125,5 +125,8 @@ namespace course_test.Controllers
             _datamanager.Order.Save();
             return RedirectToAction("Index", "Staff", new { id = staffId });
         }
+
+        [HttpGet]
+        public IActionResult ShowFinishedRecords(int id) => View(_datamanager.Order.GetAllFinishedByStaff(id));
     }
 }
